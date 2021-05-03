@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SubaruController">
+   <children>
+      <AnchorPane layoutY="-13.0" prefHeight="560.0" prefWidth="1003.0" style="-fx-background-color: #f2f3f4;" styleClass="bcimage" stylesheets="@../css/style.css">
+         <children>
+            <TableView fx:id="cars_table" layoutX="190.0" layoutY="96.0" prefHeight="278.0" prefWidth="577.0">
+              <columns>
+                <TableColumn fx:id="column_mark" prefWidth="46.0" text="Mark" />
+                <TableColumn fx:id="column_model" prefWidth="57.0" text="Model" />
+                  <TableColumn fx:id="column_year" minWidth="0.0" prefWidth="45.0" text="Year" />
+                  <TableColumn fx:id="column_mileage" prefWidth="63.0" text="Mileage" />
+                  <TableColumn fx:id="column_engine" prefWidth="119.0" text="Engine Capacity" />
+                  <TableColumn fx:id="column_transmission" prefWidth="101.0" text="Transmission" />
+                  <TableColumn fx:id="column_drive" prefWidth="50.0" text="Drive" />
+                  <TableColumn fx:id="column_hand" prefWidth="89.0" text="Hand Drive" />
+                  <TableColumn fx:id="column_fuel" prefWidth="52.0" text="Fuel" />
+                  <TableColumn fx:id="column_price" prefWidth="45.0" text="Price" />
+              </columns>
+            </TableView>
+            <ImageView fx:id="acer_icon" fitHeight="121.0" fitWidth="116.0" layoutX="54.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/acer_icon.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="searchField" layoutX="387.0" layoutY="37.0" prefHeight="26.0" prefWidth="306.0" promptText="Іздеу" />
+            <ImageView fitHeight="49.0" fitWidth="108.0" layoutX="268.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bmw.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <fx:include layoutY="3.0" source="ManuTab.fxml" />
+   </children>
+</AnchorPane>
