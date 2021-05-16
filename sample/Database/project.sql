@@ -125,3 +125,62 @@ begin
     insert into new_car (price, mark, model, year, mileage, ENGINE_CAPACITY, TRANSMISSION, DRIVE, HAND_DRIVE, FUEL,INSERT_DATE)
     values(:new.price, :new.mark, :new.model, :new.year, :new.mileage, :new.ENGINE_CAPACITY, :new.TRANSMISSION, :new.DRIVE, :new.HAND_DRIVE, :new.FUEL,SYSDATE);
 end;
+---- 1 package, 2 procedure - 1 procedure insert, 2 procedure update price ---
+CREATE OR REPlACE PACKAGE PACKAGE_1
+AS
+PROCEDURE CAR_INS(p_price VARCHAR2, p_mark VARCHAR2, p_model VARCHAR2, p_year VARCHAR2 , p_mileage VARCHAR2, p_engine VARCHAR2, p_transmission VARCHAR2
+, p_drive VARCHAR2, p_hand_drive VARCHAR2, p_fuel VARCHAR2);
+PROCEDURE CAR_UPD_PRICE(p_id NUMBER, p_price VARCHAR2);
+
+end PACKAGE_1;
+/
+CREATE OR REPLACE PACKAGE BODY PACKAGE_1
+AS 
+PROCEDURE CAR_INS(p_price VARCHAR2, p_mark VARCHAR2, p_model VARCHAR2, p_year VARCHAR2 , p_mileage VARCHAR2, p_engine VARCHAR2, p_transmission VARCHAR2
+, p_drive VARCHAR2, p_hand_drive VARCHAR2, p_fuel VARCHAR2) IS
+BEGIN
+     INSERT INTO car(price, mark, model, year, mileage, engine_capacity, transmission, drive, hand_drive, fuel)
+    VALUES(p_price, p_mark, p_model, p_year, p_mileage, p_engine, p_transmission, p_drive, p_hand_drive, p_fuel);
+    COMMIT;
+END CAR_INS;
+PROCEDURE CAR_UPD_PRICE(p_id NUMBER, p_price VARCHAR2) IS
+BEGIN
+    UPDATE car SET
+    price = p_price
+    WHERE id = p_id;
+    COMMIT;
+END CAR_UPD_PRICE; 
+END PACKAGE_1;
+
+
+
+
+
+CREATE OR REPLACE PACKAGE PACKAGE_2 
+AS
+PROCEDURE select_info(p_id NUMBER);
+PROCEDURE CAR_DEL(p_id NUMBER);
+PROCEDURE DEL_MESSAGE(p_email VARCHAR2);
+END PACKAGE_2;
+/
+CREATE OR REPLACE PACKAGE BODY PACKAGE_2 
+AS
+PROCEDURE select_info(p_id NUMBER) IS
+BEGIN 
+    EXECUTE IMMEDIATE 'SELECT * FROM car WHERE id = '' ' || p_id || '''';
+END select_info;
+PROCEDURE CAR_DEL(p_id NUMBER) IS
+BEGIN
+   EXECUTE IMMEDIATE 'DELETE FROM car WHERE id = ''' || p_id || '''';
+END CAR_DEL;
+PROCEDURE DEL_MESSAGE(p_email VARCHAR2) IS
+BEGIN
+    EXECUTE IMMEDIATE 'DELETE FROM car_feedback WHERE email = ''' || p_email || '''';
+END DEL_MESSAGE;
+END PACKAGE_2;
+
+execute package_2.select_info(1);
+execute package_2.car_del(1);
+execute package_2.del_message('wuicvb@wdvcuwv');
+
+select * from car_feedback
